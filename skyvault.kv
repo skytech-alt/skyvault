@@ -1,0 +1,186 @@
+#:import MDLabel kivymd.uix.label.MDLabel
+#:import MDTextField kivymd.uix.textfield.MDTextField
+#:import MDRaisedButton kivymd.uix.button.MDRaisedButton
+#:import MDTopAppBar kivymd.uix.topappbar.MDTopAppBar
+
+<CreatePasswordScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "24dp"
+        spacing: "16dp"
+        MDLabel:
+            text: "SkyVault"
+            halign: "center"
+            font_style: "H3"
+            size_hint_y: None
+            height: "80dp"
+        MDLabel:
+            text: "Создайте мастер-пароль"
+            halign: "center"
+            font_style: "Subtitle1"
+            size_hint_y: None
+            height: "40dp"
+        MDTextField:
+            id: pwd
+            hint_text: "Мастер-пароль (мин. 6 символов)"
+            password: True
+        MDTextField:
+            id: pwd_confirm
+            hint_text: "Повторите пароль"
+            password: True
+        MDRaisedButton:
+            text: "Создать"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.create_password()
+        Widget:
+
+<LoginScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "24dp"
+        spacing: "16dp"
+        MDLabel:
+            text: "SkyVault"
+            halign: "center"
+            font_style: "H3"
+            size_hint_y: None
+            height: "80dp"
+        MDLabel:
+            text: "Введите мастер-пароль"
+            halign: "center"
+            font_style: "Subtitle1"
+            size_hint_y: None
+            height: "40dp"
+        MDTextField:
+            id: pwd
+            hint_text: "Мастер-пароль"
+            password: True
+        MDRaisedButton:
+            text: "Войти"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.login()
+        Widget:
+
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "SkyVault"
+            elevation: 2
+            right_action_items: [["cog", lambda x: root.open_settings()]]
+        MDGridLayout:
+            cols: 2
+            padding: "16dp"
+            spacing: "16dp"
+            MDRaisedButton:
+                text: "📇\nКонтакты"
+                size_hint: 1, 1
+                on_release: root.go("contacts")
+            MDRaisedButton:
+                text: "🔑\nПароли"
+                size_hint: 1, 1
+                on_release: root.go("passwords")
+            MDRaisedButton:
+                text: "📄\nДокументы"
+                size_hint: 1, 1
+                on_release: root.go("documents")
+            MDRaisedButton:
+                text: "📋\nИнструкции"
+                size_hint: 1, 1
+                on_release: root.go("instructions")
+
+<ContactsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Контакты"
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+            right_action_items: [["plus", lambda x: root.open_add()]]
+        ScrollView:
+            MDBoxLayout:
+                id: list_container
+                orientation: "vertical"
+                padding: "8dp"
+                spacing: "8dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+<PasswordsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Пароли"
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+            right_action_items: [["plus", lambda x: root.open_add()]]
+        ScrollView:
+            MDBoxLayout:
+                id: list_container
+                orientation: "vertical"
+                padding: "8dp"
+                spacing: "8dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+<DocumentsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Документы"
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+            right_action_items: [["plus", lambda x: root.open_add()]]
+        ScrollView:
+            MDBoxLayout:
+                id: list_container
+                orientation: "vertical"
+                padding: "8dp"
+                spacing: "8dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+<InstructionsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Инструкции"
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+            right_action_items: [["plus", lambda x: root.open_add()]]
+        ScrollView:
+            MDBoxLayout:
+                id: list_container
+                orientation: "vertical"
+                padding: "8dp"
+                spacing: "8dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+<SettingsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Настройки"
+            left_action_items: [["arrow-left", lambda x: root.go_back()]]
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: "16dp"
+            spacing: "12dp"
+            MDRaisedButton:
+                text: "Сменить мастер-пароль"
+                size_hint: 1, None
+                height: "56dp"
+                on_release: root.change_password()
+            MDRaisedButton:
+                text: "Экспорт резервной копии"
+                size_hint: 1, None
+                height: "56dp"
+                on_release: root.export_backup()
+            MDRaisedButton:
+                text: "Импорт резервной копии"
+                size_hint: 1, None
+                height: "56dp"
+                on_release: root.import_backup()
+            MDRaisedButton:
+                text: "О программе"
+                size_hint: 1, None
+                height: "56dp"
+                on_release: root.show_about()
+            Widget:

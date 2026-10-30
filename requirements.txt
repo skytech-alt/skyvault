@@ -1,0 +1,4 @@
+kivy==2.1.0
+kivymd==1.1.1
+cryptography>=41.0.0
+plyer==2.1.0
